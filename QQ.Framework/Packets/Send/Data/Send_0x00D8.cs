@@ -1,17 +1,17 @@
 namespace QQ.Framework.Packets.Send.Data
 {
-    public class Send_0X0195 : SendPacket
+    public class Send_0X00D8 : SendPacket
     {
         /// <summary>
-        /// 群分组信息查询
+        /// 问问个人中心地址
         /// </summary>
         /// <param name="user"></param>
-        public Send_0X0195(QQUser user)
+        public Send_0X00D8(QQUser user)
             : base(user)
         {
             Sequence = GetNextSeq();
             SecretKey = user.TXProtocol.SessionKey;
-            Command = QQCommand.Data0X0195;
+            Command = QQCommand.Data0X00D8;
         }
 
         protected override void PutHeader()
@@ -25,7 +25,7 @@ namespace QQ.Framework.Packets.Send.Data
         /// </summary>
         protected override void PutBody()
         {
-            BodyWriter.Write(new byte[] { 0x01, 0x01, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00 });
+            BodyWriter.Write((byte)0x07);
         }
     }
 }

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Properties\AssemblyInfo.cs" />
     <Compile Remove="Domains\IPacket.cs" />
     <Compile Remove="Domains\ReceiveCommand.cs" />
     <Compile Remove="Domains\ReceivePackageCommand.cs" />
@@ -13,6 +14,7 @@
 
   <ItemGroup>
     <PackageReference Include="Iconic.Zlib.Netstandard" Version="1.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
     <PackageReference Include="protobuf-net" Version="3.0.0-alpha.3" />
     <PackageReference Include="System.Drawing.Common" Version="4.5.0" />
   </ItemGroup>

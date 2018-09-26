@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using System.Threading.Tasks;
 using QQ.Framework.Utils;
 
 namespace QQ.Framework.Packets.Receive.Data
@@ -18,14 +19,18 @@ namespace QQ.Framework.Packets.Receive.Data
         {
             Decrypt(User.TXProtocol.SessionKey);
             Reader.ReadBytes(4);
-            User.QQSkey = Encoding.UTF8.GetString(Reader.ReadBytes(10));
-            if (string.IsNullOrEmpty(User.QQSkey))
+            User.QQSKey = Encoding.UTF8.GetString(Reader.ReadBytes(10));
+            if (string.IsNullOrEmpty(User.QQSKey))
             {
                 throw new Exception("skey获取失败");
             }
-
-            User.QQCookies = "uin=o" + User.QQ + ";skey=" + User.QQSkey + ";";
-            User.QQGtk = Util.GET_GTK(User.QQSkey);
+            new Task(() => {
+                User.GetQunCookies();
+                User.Friends = User.Get_Friend_List();
+                User.Groups = User.Get_Group_List();
+            }).Start();
+            //User.QQCookies = "uin=o" + User.QQ + ";skey=" + User.QQSkey + ";";
+            //User.QQGtk = Util.GET_GTK(User.QQSkey);
         }
     }
 }

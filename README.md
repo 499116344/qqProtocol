@@ -4,16 +4,11 @@ PCQQ协议
 
 如果对你有用，希望你能留下Star
 
-MyUser.cs为本人扩展用户名和密码这里不做上传
-
 [![Build Status](https://travis-ci.org/luojinfang/PCQQ-Protocol.svg?branch=master)](https://travis-ci.org/luojinfang/PCQQ-Protocol)
-
-自定义机器人相关类图
-<img src="/QQ.Framework/Docs/UMLs/RoBot.png?raw=true" width="800px" alt="自定义机器人相关类图">
 
 源码仅供参考，欢迎吐槽
 ------------------------------------------
-#### 2018-9-25
+#### 2018-9-26
 1. 群分组信息和好友信息查询
 2. 新增`.net standard`分支
 3. 主分支修改为`.net framework`

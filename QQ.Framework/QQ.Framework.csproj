@@ -3,6 +3,16 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>QQ.Framework</RootNamespace>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>QQ.Framework.NETStandard</PackageId>
+    <PackageProjectUrl>https://github.com/luojinfang/PCQQ-Protocol</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/luojinfang/PCQQ-Protocol/blob/net_standard/LICENSE</PackageLicenseUrl>
+    <RepositoryUrl>https://github.com/luojinfang/PCQQ-Protocol/tree/net_standard</RepositoryUrl>
+    <PackageTags></PackageTags>
+    <Authors>luojinfang, sgkoishi, WhileKing</Authors>
+    <Company>QQ.Framework</Company>
+    <Description>.Net Standard下的一个开源QQ机器人，使用PCQQ协议。正处于开发状态。</Description>
+    <PackageReleaseNotes>.Net Standard版本。</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
@@ -15,7 +25,6 @@
   <ItemGroup>
     <PackageReference Include="Iconic.Zlib.Netstandard" Version="1.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
-    <PackageReference Include="protobuf-net" Version="3.0.0-alpha.3" />
     <PackageReference Include="System.Drawing.Common" Version="4.5.0" />
   </ItemGroup>
 

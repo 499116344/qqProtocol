@@ -12,7 +12,9 @@
     <Authors>luojinfang, sgkoishi, WhileKing</Authors>
     <Company>QQ.Framework</Company>
     <Description>.Net Standard下的一个开源QQ机器人，使用PCQQ协议。正处于开发状态。</Description>
-    <PackageReleaseNotes>.Net Standard版本。</PackageReleaseNotes>
+    <PackageReleaseNotes>修复群聊错误。</PackageReleaseNotes>
+    <Version>1.0.2</Version>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
   </PropertyGroup>
 
   <ItemGroup>

@@ -1,77 +1,23 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{504A6DF0-EBF5-404C-8C2E-9C9A448160D9}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>QQ.FrameworkTest</RootNamespace>
-    <AssemblyName>QQ.FrameworkTest</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">15.0</VisualStudioVersion>
-    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
-    <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
-    <IsCodedUITest>False</IsCodedUITest>
-    <TestProjectType>UnitTest</TestProjectType>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.Remoting" />
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Xml.Serialization" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="GZipByteArrayTest.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Robots\TestRoBot.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Domains\Commands\ReceiveCommands\Data\" />
-    <Folder Include="Domains\Commands\ReceiveCommands\Interactive\" />
-    <Folder Include="Domains\Commands\ReceiveCommands\Login\" />
-    <Folder Include="Domains\Commands\ReceiveCommands\Message\" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Machine.Specifications.Should">
-      <Version>0.11.0</Version>
-    </PackageReference>
-    <PackageReference Include="MSTest.TestAdapter">
-      <Version>1.2.1</Version>
-    </PackageReference>
-    <PackageReference Include="MSTest.TestFramework">
-      <Version>1.2.1</Version>
-    </PackageReference>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\QQ.Framework\QQ.Framework.csproj">
-      <Project>{13a2cfe6-7b1a-4231-bd19-5aade3b4f33c}</Project>
-      <Name>QQ.Framework</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Library</OutputType>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <RootNamespace>QQLoginTest</RootNamespace>
+        <ApplicationIcon />
+        <StartupObject />
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\QQ.Framework\QQ.Framework.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="Machine.Specifications.Should">
+            <Version>0.11.0</Version>
+        </PackageReference>
+        <PackageReference Include="MSTest.TestFramework">
+            <Version>1.2.1</Version>
+        </PackageReference>
+    </ItemGroup>
+
 </Project>

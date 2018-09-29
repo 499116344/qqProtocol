@@ -6,7 +6,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QQ.FrameworkTest", "QQ.Fram
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QQ.Framework", "QQ.Framework\QQ.Framework.csproj", "{13A2CFE6-7B1A-4231-BD19-5AADE3B4F33C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QQLoginTest.NETCore", "QQLoginTest\QQLoginTest.NETCore.csproj", "{6D22F31C-0758-4CE8-888A-A256DB9E46BE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QQLoginTest", "QQLoginTest\QQLoginTest.csproj", "{6D22F31C-0758-4CE8-888A-A256DB9E46BE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

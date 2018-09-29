@@ -1,8 +1,9 @@
 using System;
-using System.Text;
+using CommandLine;
 using QQ.Framework;
 using QQ.Framework.Domains;
 using QQ.Framework.Sockets;
+using QQ.Framework.Utils;
 using QQLoginTest.Robots;
 
 namespace QQLoginTest
@@ -11,21 +12,63 @@ namespace QQLoginTest
     {
         private static void Main(string[] args)
         {
-            if (args.Length < 2)
-            {
-                Console.WriteLine("”¶”–¡Ω∏ˆ≤Œ ˝£∫QQ∫≈∫Õ√‹¬Î");
-            }
-            var user = new QQUser(int.Parse(args[0]), args[1]);
-            var socketServer = new SocketServiceImpl(user);
+            Parser.Default.ParseArguments<Options>(args).WithParsed(o =>
+                {
+                    if (o.ServerIndex == 0)
+                    {
+                        o.ServerIndex = new Random().Next(1, 10);
+                    }
+
+                    QQGlobal.DebugLog = o.DebugView;
+                    Console.WriteLine($"Ë∞ÉËØï‰ø°ÊÅØ: {(QQGlobal.DebugLog ? "" : "‰∏ç")}ÊòæÁ§∫");
+                    Run(o.QQNumber, o.QQPassword, o.ServerAddress ??
+                                                  (o.ServerIndex == 1
+                                                      ? "sz.tencent.com"
+                                                      : $"sz{o.ServerIndex}.tencent.com"));
+                })
+                .WithNotParsed(e =>
+                {
+                    foreach (var error in e)
+                    {
+                        Console.WriteLine(error);
+                    }
+                });
+        }
+
+        private static void Run(long account, string password, string host)
+        {
+            var hostip = Util.GetHostAddresses(host);
+            var accountStr = account.ToString();
+            accountStr = accountStr.Substring(0, 3) + new string('*', accountStr.Length - 6) +
+                         accountStr.Substring(accountStr.Length - 3);
+            Console.WriteLine(
+                $"QQÂè∑Á†Å: {accountStr}\r\nÂØÜÁ†Å: {new string('*', password.Length)}\r\nÊúçÂä°Âô®: {host}\r\nÊúçÂä°Âô®IP: {hostip}");
+            var user = new QQUser(account, password);
+            var socketServer = new SocketServiceImpl(user, hostip);
             var transponder = new Transponder();
             var sendService = new SendMessageServiceImpl(socketServer, user);
-
             var manage = new MessageManage(socketServer, user, transponder);
-
             var robot = new TestRoBot(sendService, transponder, user);
-
             manage.Init();
             Console.ReadKey();
+        }
+
+        public class Options
+        {
+            [Option("qq", Required = true)]
+            public long QQNumber { get; set; }
+
+            [Option("pass", Required = true)]
+            public string QQPassword { get; set; }
+
+            [Option("debug", Required = false, Default = false)]
+            public bool DebugView { get; set; }
+
+            [Option("si", Required = false, Default = 0, SetName = "server")]
+            public int ServerIndex { get; set; }
+
+            [Option("server", Required = false, Default = null, SetName = "server")]
+            public string ServerAddress { get; set; }
         }
     }
 }

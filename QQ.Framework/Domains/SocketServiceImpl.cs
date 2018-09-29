@@ -30,11 +30,11 @@ namespace QQ.Framework.Domains
         private EndPoint _point;
 
 
-        public SocketServiceImpl(QQUser user)
+        public SocketServiceImpl(QQUser user, string host)
         {
             _user = user;
             _server = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
-            _host = Util.GetHostAddresses("sz2.tencent.com"); ////sz.tencent.com,sz{2-9}.tencent.com
+            _host = host;
             _user.TXProtocol.DwServerIP = _host;
             _port = _user.TXProtocol.WServerPort;
             _point = new IPEndPoint(IPAddress.Parse(_host), _port);

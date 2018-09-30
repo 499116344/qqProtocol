@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace QQ.Framework.Utils
@@ -8,20 +9,40 @@ namespace QQ.Framework.Utils
     {
         public List<TextSnippet> Snippets = new List<TextSnippet>();
 
+        public static Richtext Parse(string message)
+        {
+            // TODO: 解析富文本
+            return FromLiteral(message);
+        }
+
         public static Richtext FromLiteral(string message)
         {
-            return new Richtext
-            {
-                Snippets = new List<TextSnippet>
-                {
-                    new TextSnippet {Content = message ?? ""}
-                }
-            };
+            return new Richtext {Snippets = new List<TextSnippet> {new TextSnippet(message ?? "")}};
+        }
+
+        public static Richtext FromSnippets(params TextSnippet[] message)
+        {
+            return new Richtext {Snippets = message.ToList()};
         }
 
         public override string ToString()
         {
             return string.Join("", Snippets);
+        }
+
+        public static implicit operator string(Richtext text)
+        {
+            return text.ToString();
+        }
+
+        public static implicit operator Richtext(string text)
+        {
+            return FromLiteral(text);
+        }
+
+        public static implicit operator Richtext(TextSnippet text)
+        {
+            return FromSnippets(text);
         }
     }
 
@@ -29,6 +50,12 @@ namespace QQ.Framework.Utils
     {
         public string Content;
         public MessageType Type;
+
+        public TextSnippet(string message = "", MessageType type = MessageType.Normal)
+        {
+            Content = message;
+            Type = type;
+        }
 
         public int Length
         {
@@ -76,6 +103,16 @@ namespace QQ.Framework.Utils
                 default:
                     return "[特殊代码]";
             }
+        }
+
+        public static implicit operator string(TextSnippet text)
+        {
+            return text.ToString();
+        }
+
+        public static implicit operator TextSnippet(string text)
+        {
+            return new TextSnippet(text);
         }
     }
 }

@@ -20,7 +20,7 @@ namespace QQLoginTest
                     }
 
                     QQGlobal.DebugLog = o.DebugView;
-                    Console.WriteLine($"µ÷ÊÔĞÅÏ¢: {(QQGlobal.DebugLog ? "" : "²»")}ÏÔÊ¾");
+                    Console.WriteLine($"è°ƒè¯•ä¿¡æ¯: {(QQGlobal.DebugLog ? "" : "ä¸")}æ˜¾ç¤º");
                     Run(o.QQNumber, o.QQPassword, o.ServerAddress ??
                                                   (o.ServerIndex == 1
                                                       ? "sz.tencent.com"
@@ -42,7 +42,7 @@ namespace QQLoginTest
             accountStr = accountStr.Substring(0, 3) + new string('*', accountStr.Length - 6) +
                          accountStr.Substring(accountStr.Length - 3);
             Console.WriteLine(
-                $"QQºÅÂë: {accountStr}\r\nÃÜÂë: {new string('*', password.Length)}\r\n·şÎñÆ÷: {host}\r\n·şÎñÆ÷IP: {hostip}");
+                $"QQå·ç : {accountStr}\r\nå¯†ç : {new string('*', password.Length)}\r\næœåŠ¡å™¨: {host}\r\næœåŠ¡å™¨IP: {hostip}");
             var user = new QQUser(account, password);
             var socketServer = new SocketServiceImpl(user, hostip);
             var transponder = new Transponder();

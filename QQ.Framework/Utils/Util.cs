@@ -14,7 +14,7 @@ namespace QQ.Framework.Utils
     public static class Util
     {
         private static readonly Encoding DefaultEncoding = Encoding.GetEncoding(QQGlobal.QQCharsetDefault);
-        private static readonly DateTime BaseDateTime = DateTime.Parse("1970-1-01 00:00:00.000");
+        private static readonly DateTime BaseDateTime = DateTime.Parse("1970-1-01 08:00:00.000");
 
         public static Random Random = new Random();
 
@@ -229,7 +229,6 @@ namespace QQ.Framework.Utils
 
         /// <summary>
         ///     用于代替 System.currentTimeMillis()
-        ///     <remark>2008-02-29 </remark>
         /// </summary>
         /// <param name="dateTime">The date time.</param>
         /// <returns></returns>
@@ -245,14 +244,12 @@ namespace QQ.Framework.Utils
 
         /// <summary>
         ///     根据服务器返回的毫秒表示的日期，获得实际的日期
-        ///     Gets the date time from millis.
-        ///     似乎服务器返回的日期要加上8个小时才能得到正确的 +8 时区的登录时间
         /// </summary>
         /// <param name="millis">The millis.</param>
         /// <returns></returns>
         public static DateTime GetDateTimeFromMillis(long millis)
         {
-            return BaseDateTime.AddTicks(millis * TimeSpan.TicksPerSecond).AddHours(8);
+            return BaseDateTime.AddTicks(millis * TimeSpan.TicksPerSecond);
         }
 
         /// <summary>
@@ -443,20 +440,15 @@ namespace QQ.Framework.Utils
             }
             catch (Exception ex)
             {
-                throw new Exception("GetMD5HashFromFile() fail,error:" + ex.Message);
+                throw new Exception("GetMD5HashFromFile() fail, error:" + ex.Message);
             }
         }
 
         public static string GetMD5ToGuidHashFromFile(string fileName)
         {
             var md5 = GetMD5HashFromFile(fileName);
-            return "{" +
-                   md5.Substring(0, 8) + "-" +
-                   md5.Substring(8, 4) + "-" +
-                   md5.Substring(12, 4) + "-" +
-                   md5.Substring(16, 4) + "-" +
-                   md5.Substring(20) + "-" +
-                   "}";
+            return
+                $"{{{md5.Substring(0, 8)}-{md5.Substring(8, 4)}-{md5.Substring(12, 4)}-{md5.Substring(16, 4)}-{md5.Substring(20)}}}";
         }
 
         /// <summary>
@@ -544,6 +536,26 @@ namespace QQ.Framework.Utils
         public static void BeWrite(this BinaryWriter bw, ulong v)
         {
             bw.Write(BitConverter.GetBytes((uint) v).Reverse().ToArray());
+        }
+
+        public static char BeReadChar(this BinaryReader br)
+        {
+            return (char) br.BeReadUInt16();
+        }
+
+        public static ushort BeReadUInt16(this BinaryReader br)
+        {
+            return (ushort) ((br.ReadByte() << 8) + br.ReadByte());
+        }
+
+        public static int BeReadInt32(this BinaryReader br)
+        {
+            return (br.ReadByte() << 24) | (br.ReadByte() << 16) | (br.ReadByte() << 8) | br.ReadByte();
+        }
+
+        public static uint BeReadUInt32(this BinaryReader br)
+        {
+            return (uint) ((br.ReadByte() << 24) | (br.ReadByte() << 16) | (br.ReadByte() << 8) | br.ReadByte());
         }
 
         /// <summary>
@@ -695,26 +707,6 @@ namespace QQ.Framework.Utils
 
             ret.Add(bw.BaseStream.ToBytesArray());
             return ret;
-        }
-
-        public static char BeReadChar(this BinaryReader br)
-        {
-            return (char) br.BeReadUInt16();
-        }
-
-        public static ushort BeReadUInt16(this BinaryReader br)
-        {
-            return (ushort) ((br.ReadByte() << 8) + br.ReadByte());
-        }
-
-        public static int BeReadInt32(this BinaryReader br)
-        {
-            return (br.ReadByte() << 24) | (br.ReadByte() << 16) | (br.ReadByte() << 8) | br.ReadByte();
-        }
-
-        public static uint BeReadUInt32(this BinaryReader br)
-        {
-            return (uint) ((br.ReadByte() << 24) | (br.ReadByte() << 16) | (br.ReadByte() << 8) | br.ReadByte());
         }
 
         public static Richtext ReadRichtext(this BinaryReader br)

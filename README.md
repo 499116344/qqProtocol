@@ -5,9 +5,14 @@ PCQQ协议
 如果对你有用，希望你能留下Star
 
 [![Build Status](https://travis-ci.org/luojinfang/PCQQ-Protocol.svg?branch=master)](https://travis-ci.org/luojinfang/PCQQ-Protocol)
+[![Discord](https://discordapp.com/api/guilds/499612703447580683/widget.png?style=shield)](https://discord.gg/vp6bXfb)
+[Tg](https://t.me/joinchat/FTcG4kuKAAo1BqojyDxNzQ)
 
 源码仅供参考，欢迎吐槽
 ------------------------------------------
+#### 2018-10-10
+1. 新增私聊消息撤回与群消息撤回
+
 #### 2018-9-26
 1. 群分组信息和好友信息查询
 2. 新增`.net standard`分支

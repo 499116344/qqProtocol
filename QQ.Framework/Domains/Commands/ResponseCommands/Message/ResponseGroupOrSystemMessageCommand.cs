@@ -38,8 +38,7 @@ namespace QQ.Framework.Domains.Commands.ResponseCommands.Message
             //查看群消息确认
             if (_packet.ReceiveTime != null)
             {
-                //TODO:未实现
-                //client.Send(new Send_0x0360(user, packet.Group, packet.ReceiveTime).WriteData());
+                _service.Send(new Send_0X0391(_user, _packet.Group));
             }
         }
     }

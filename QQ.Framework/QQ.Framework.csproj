@@ -12,10 +12,10 @@
     <Authors>luojinfang, sgkoishi, WhileKing</Authors>
     <Company>QQ.Framework</Company>
     <Description>.Net Standard下的一个开源QQ机器人，使用PCQQ协议。正处于开发状态。</Description>
-    <PackageReleaseNotes>试图增加长文本支持。</PackageReleaseNotes>
-    <Version>1.1.0</Version>
-    <AssemblyVersion>1.1.0.0</AssemblyVersion>
-    <FileVersion>1.1.0.0</FileVersion>
+    <PackageReleaseNotes>支持富文本解析（虽然只能解析</PackageReleaseNotes>
+    <Version>1.2.0</Version>
+    <AssemblyVersion>1.2.0.0</AssemblyVersion>
+    <FileVersion>1.2.0.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>

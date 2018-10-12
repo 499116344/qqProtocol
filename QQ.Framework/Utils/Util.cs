@@ -593,9 +593,9 @@ namespace QQ.Framework.Utils
                         {
                             var pos = bw.BaseStream.Position;
                             bw.BaseStream.Position = 0;
-                            bw.Write(new byte[] {0x01});
+                            bw.Write(new byte[] { 0x01 });
                             bw.BeWrite((ushort) (pos - 3)); // 本来是+3和0的，但是提前预留了6个byte给它们，所以变成了-3和-6。下同理。
-                            bw.Write(new byte[] {0x01});
+                            bw.Write(new byte[] { 0x01 });
                             bw.BeWrite((ushort) (pos - 6));
                             bw.BaseStream.Position = pos;
                             ret.Add(bw.BaseStream.ToBytesArray());
@@ -611,9 +611,9 @@ namespace QQ.Framework.Utils
                     {
                         var pos = bw.BaseStream.Position;
                         bw.BaseStream.Position = 0;
-                        bw.Write(new byte[] {0x01});
+                        bw.Write(new byte[] { 0x01 });
                         bw.BeWrite((ushort) (pos - 3));
-                        bw.Write(new byte[] {0x01});
+                        bw.Write(new byte[] { 0x01 });
                         bw.BeWrite((ushort) (pos - 6));
                         bw.BaseStream.Position = pos;
                     }
@@ -634,11 +634,11 @@ namespace QQ.Framework.Utils
                         faceIndex = 0;
                     }
 
-                    bw.Write(new byte[] {0x02, 0x00, 0x14, 0x01, 0x00, 0x01});
+                    bw.Write(new byte[] { 0x02, 0x00, 0x14, 0x01, 0x00, 0x01 });
                     bw.Write(faceIndex);
-                    bw.Write(new byte[] {0xFF, 0x00, 0x02, 0x14});
+                    bw.Write(new byte[] { 0xFF, 0x00, 0x02, 0x14 });
                     bw.Write((byte) (faceIndex + 65));
-                    bw.Write(new byte[] {0x0B, 0x00, 0x08, 0x00, 0x01, 0x00, 0x04, 0x52, 0xCC, 0x85, 0x50});
+                    bw.Write(new byte[] { 0x0B, 0x00, 0x08, 0x00, 0x01, 0x00, 0x04, 0x52, 0xCC, 0x85, 0x50 });
                     break;
                 }
                 case MessageType.Picture:
@@ -709,11 +709,9 @@ namespace QQ.Framework.Utils
             return ret;
         }
 
-        public static Richtext ReadRichtext(this BinaryReader br)
+        public static Richtext ReadRichtext(this BinaryReader reader)
         {
-            // TODO: 解析富文本
-            // 目前进度: 仅读取第一部分
-            return Richtext.Parse(br.ReadBytes(br.BeReadChar()));
+            return Richtext.Parse(reader);
         }
 
         #endregion

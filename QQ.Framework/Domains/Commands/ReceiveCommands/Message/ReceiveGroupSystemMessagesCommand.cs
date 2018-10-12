@@ -17,25 +17,18 @@ namespace QQ.Framework.Domains.Commands.ReceiveCommands.Message
             QQUser user) : base(data, service, transponder, user)
         {
             _packet = new Receive_0X0017(data, _user);
-            if (_user.GroupMessages.Where(c => c.Sequence == _packet.Sequence).Any())
-            {
-                var messageSend = _user.GroupMessages.Where(c => c.Sequence == _packet.Sequence).FirstOrDefault();
-                if (messageSend != null)
-                {
-                    messageSend.MessageId = _packet.MessageId;
-                    messageSend.MessageIndex = _packet.MessageIndex;
-                }
-            }
-
             _eventArgs = new QQEventArgs<Receive_0X0017>(_service, _user, _packet);
         }
 
         public override void Process()
         {
             Response();
-
-            // 将收到的群/系统消息转发给所有机器人
-            _transponder.ReceiveGroupMessage(_packet.Group, _packet.FromQQ, _packet.Message);
+            //除了自己消息以外的消息进行转发
+            if (_user.GroupSendMessages.All(c => c.Sequence != _packet.Sequence))
+            {
+                // 将收到的群/系统消息转发给所有机器人
+                _transponder.ReceiveGroupMessage(_packet.Group, _packet.FromQQ, _packet.Message);
+            }
         }
     }
 }

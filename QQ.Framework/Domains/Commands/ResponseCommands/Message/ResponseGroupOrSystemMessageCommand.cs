@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using System.Linq;
 using QQ.Framework.Events;
@@ -38,7 +39,7 @@ namespace QQ.Framework.Domains.Commands.ResponseCommands.Message
                         }
 
                         _service.MessageLog($"收到群{_packet.Group}的{_packet.FromQQ}的消息:{_packet.Message}");
-
+                        
                         //添加到已处理消息列表
                         _user.GroupReceiveMessages.Add(_packet);
                     }

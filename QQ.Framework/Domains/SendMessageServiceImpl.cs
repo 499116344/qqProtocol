@@ -1,5 +1,7 @@
 using QQ.Framework.Packets.Send.Message;
 using QQ.Framework.Utils;
+using System;
+using System.Linq;
 
 namespace QQ.Framework.Domains
 {

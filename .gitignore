@@ -16,3 +16,4 @@
 /protobuf-net/bin/Debug/netstandard2.0
 /protobuf-net/obj
 /ownrun.sh
+*.csproj.user
